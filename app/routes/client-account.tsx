@@ -5,7 +5,7 @@ import type {
   LoaderFunctionArgs,
 } from "@remix-run/node"; // or cloudflare/deno
 import { json } from "@remix-run/node"; // or cloudflare/deno
-import { useLoaderData, Form } from "@remix-run/react";
+import { useLoaderData, Form, ClientLoaderFunction } from "@remix-run/react";
 
 async function getUser(request: Request) {
   return {
@@ -14,24 +14,32 @@ async function getUser(request: Request) {
   }
 }
 
-export async function loader({
+export const clientLoader: ClientLoaderFunction = async ({
   request,
-}: LoaderFunctionArgs) {
-  console.log('loader /account');
+  params,
+  serverLoader,
+}) => {
+  console.log('clientLoader /client-account');
 
   const user = await getUser(request);
-  return json({
-    displayName: user.displayName,
-    email: user.email,
-  });
+  return {
+    displayName: `${user.displayName} (client)`,
+    email: `${user.email} (client)`,
+  }
+};
+
+clientLoader.hydrate = true;
+
+export function HydrateFallback() {
+  return <p>Skeleton rendered during SSR</p>;
 }
 
 export default function Component() {
-  console.log('component /account');
+  console.log('component /client-account');
 
-  const user = useLoaderData<typeof loader>();
+  const user = useLoaderData<typeof clientLoader>();
   return (
-    <Form method="post" action="/account" className="p-8">
+    <Form method="post" action="/client-account" className="p-8">
       <h1>Settings for {user.displayName}</h1>
 
       <input
@@ -53,18 +61,13 @@ export default function Component() {
   );
 }
 
-export async function action({
+export async function clientAction({
   request,
 }: ActionFunctionArgs) {
-  console.log('action /account');
+  console.log('clientAction /client-account');
 
   const formData = await request.formData();
-  const user = await getUser(request);
+  console.log(Object.fromEntries(formData));
 
-  // await updateUser(user.id, {
-  //   email: formData.get("email"),
-  //   displayName: formData.get("displayName"),
-  // });
-
-  return json({ ok: true });
+  return { ok: true };
 }
