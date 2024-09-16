@@ -1,8 +1,5 @@
 
-import type {
-  ActionFunctionArgs,
-} from "@remix-run/node"; // or cloudflare/deno
-import { useLoaderData, Form, ClientLoaderFunction } from "@remix-run/react";
+import { useLoaderData, Form, ClientLoaderFunction, ClientActionFunctionArgs } from "@remix-run/react";
 
 async function getUser(request: Request) {
   return {
@@ -60,7 +57,7 @@ export default function Component() {
 
 export async function clientAction({
   request,
-}: ActionFunctionArgs) {
+}: ClientActionFunctionArgs) {
   console.log('clientAction /client-account');
 
   const formData = await request.formData();

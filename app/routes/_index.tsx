@@ -32,6 +32,13 @@ export default function Index() {
         <div>
           <div>
             <button className="rounded-md bg-gray-500">
+              <Link to="/account" className="block p-4">
+                /account (front navigation)
+              </Link>
+            </button>
+          </div>
+          <div className="mt-4">
+            <button className="rounded-md bg-gray-500">
               <Link to="/server-account" className="block p-4">
                 /server-account (front navigation)
               </Link>
