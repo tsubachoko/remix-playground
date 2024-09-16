@@ -1,10 +1,7 @@
-// 参考元: https://remix.run/docs/en/main/discussion/data-flow
 
 import type {
   ActionFunctionArgs,
-  LoaderFunctionArgs,
 } from "@remix-run/node"; // or cloudflare/deno
-import { json } from "@remix-run/node"; // or cloudflare/deno
 import { useLoaderData, Form, ClientLoaderFunction } from "@remix-run/react";
 
 async function getUser(request: Request) {

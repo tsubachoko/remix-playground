@@ -51,6 +51,20 @@ export default function Index() {
               </Link>
             </button>
           </div>
+          <div className="mt-4">
+            <button className="rounded-md bg-gray-500">
+              <a href="/api" className="block p-4">
+                /api
+              </a>
+            </button>
+          </div>
+          <div className="mt-4">
+            <button className="rounded-md bg-gray-500">
+              <a href="/client-loader-only" className="block p-4">
+                /client-loader-only (error)
+              </a>
+            </button>
+          </div>
         </div>
         <nav className="flex flex-col items-center justify-center gap-4 rounded-3xl border border-gray-200 p-6 dark:border-gray-700">
           <p className="leading-6 text-gray-700 dark:text-gray-200">
