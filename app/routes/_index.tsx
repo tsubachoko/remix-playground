@@ -31,12 +31,12 @@ export default function Index() {
         </header>
         <div>
           <div>
-            <button className="rounded-3xl border border-gray-200 p-4">
+            <button className="rounded-md bg-gray-500 p-4">
               <Link to="/account">sample page(/account front navigation)</Link>
             </button>
           </div>
           <div className="mt-4">
-            <button className="rounded-3xl border border-gray-200 p-4">
+            <button className="rounded-md bg-gray-500 p-4">
               <a href="/account">sample page(/account)</a>
             </button>
           </div>

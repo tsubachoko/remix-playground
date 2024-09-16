@@ -31,16 +31,24 @@ export default function Component() {
 
   const user = useLoaderData<typeof loader>();
   return (
-    <Form method="post" action="/account">
+    <Form method="post" action="/account" className="p-8">
       <h1>Settings for {user.displayName}</h1>
 
       <input
         name="displayName"
         defaultValue={user.displayName}
+        className="rounded-md border border-gray-200 p-2"
       />
-      <input name="email" defaultValue={user.email} />
+      <input
+        name="email"
+        defaultValue={user.email}
+        className="rounded-md border border-gray-200 p-2 ml-2"
+      />
 
-      <button type="submit">Save</button>
+      <button
+        type="submit"
+        className="rounded-md bg-gray-500 p-2 ml-2"
+      >Save</button>
     </Form>
   );
 }
